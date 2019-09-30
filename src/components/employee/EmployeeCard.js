@@ -8,7 +8,7 @@ class EmployeeCard extends Component {
           <picture>
             <img src={require('./employee.webp')} alt="My Employee" />
           </picture>
-          <h3>Employee: <span className="card-employee-name">Ringling Circus</span></h3>
+          <h3>Employee: <span className="card-employee-name">{this.props.employee.name}</span></h3>
           <p></p>
         </div>
       </div>

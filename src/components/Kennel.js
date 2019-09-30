@@ -11,7 +11,6 @@ class Kennel extends Component {
             <>
                 <NavBar />
                 <ApplicationViews />
-                {/*<AnimalList />*/}
             </>
         )
     }
