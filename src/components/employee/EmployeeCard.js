@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 
 class EmployeeCard extends Component {
+
+  myDelete = () => {
+    alert("item deleted!")
+  }
+
   render() {
     return (
       <div className="card">
@@ -9,6 +14,7 @@ class EmployeeCard extends Component {
             <img src={require('./employee.webp')} alt="My Employee" />
           </picture>
           <h3>Employee: <span className="card-employee-name">{this.props.employee.name}</span></h3>
+          <button type="button" onClick={() => this.myDelete()}>Discharge</button>
           <p></p>
         </div>
       </div>

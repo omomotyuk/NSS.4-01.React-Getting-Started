@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 
 class OwnerCard extends Component {
+
+  myDelete = () => {
+    alert("item deleted!")
+  }
+
   render() {
     return (
       <div className="card">
@@ -10,6 +15,7 @@ class OwnerCard extends Component {
           </picture>
           <h3>Owner: <span className="card-owner">{this.props.owner.name}</span></h3>
           <p></p>
+          <button type="button" onClick={() => this.myDelete()}>Discharge</button>
         </div>
       </div>
     );
