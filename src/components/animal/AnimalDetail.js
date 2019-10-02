@@ -7,6 +7,7 @@ class AnimalDetail extends Component {
     state = {
         name: "",
         breed: "",
+        imageUrl: "",
         loadingStatus: true,
     }
 
@@ -25,12 +26,18 @@ class AnimalDetail extends Component {
                 this.setState({
                     name: animal.name,
                     breed: animal.breed,
+                    imageUrl: animal.url,
                     loadingStatus: false
                 });
             });
     }
 
     render() {
+        {/*}
+        if( this.state.loadingStatus ) {
+            return <p>Loading...</p>
+        }
+    */}
         return (
             <div className="card">
                 <div className="card-content">
