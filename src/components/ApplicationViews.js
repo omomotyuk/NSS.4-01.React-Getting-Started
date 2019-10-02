@@ -1,4 +1,5 @@
-import { Route } from 'react-router-dom'
+//import { Route } from 'react-router-dom'
+import { Route, withRouter, Redirect } from "react-router-dom"
 import React, { Component } from 'react'
 import Home from './home/Home'
 //import AnimalCard from './animal/AnimalCard'
@@ -10,20 +11,30 @@ import LocationList from './location/LocationList'
 import LocationDetail from './location/LocationDetail'
 import EmployeeList from './employee/EmployeeList'
 import OwnerList from './owner/OwnerList'
+import Login from './auth/Login'
 
 
 class ApplicationViews extends Component {
 
+  // Check if credentials are in local storage
+  //returns true/false
+  isAuthenticated = () => localStorage.getItem("credentials") !== null
+
   render() {
     return (
       <React.Fragment>
+
         <Route exact path="/" render={(props) => {
           return <Home />
         }} />
 
         { /* updated route: `/animals` */}
-        <Route exact path="/animals" render={(props) => {
-          return <AnimalList {...props} />
+        <Route exact path="/animals" render={props => {
+          if (this.isAuthenticated()) {
+            return <AnimalList {...props} />
+          } else {
+            return <Redirect to="/login" />
+          }
         }} />
 
         {/* Make sure you add the `exact` attribute here */}
@@ -56,6 +67,7 @@ class ApplicationViews extends Component {
           return <AnimalForm {...props} />
         }} />
 
+        <Route path="/login" component={Login} />
 
       </React.Fragment>
     )
