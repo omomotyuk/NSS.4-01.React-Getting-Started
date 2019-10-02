@@ -20,6 +20,7 @@ class ApplicationViews extends Component {
   //returns true/false
   isAuthenticated = () => localStorage.getItem("credentials") !== null
 
+
   render() {
     return (
       <React.Fragment>
@@ -28,7 +29,6 @@ class ApplicationViews extends Component {
           return <Home />
         }} />
 
-        { /* updated route: `/animals` */}
         <Route exact path="/animals" render={props => {
           if (this.isAuthenticated()) {
             return <AnimalList {...props} />
@@ -36,31 +36,47 @@ class ApplicationViews extends Component {
             return <Redirect to="/login" />
           }
         }} />
-
-        {/* Make sure you add the `exact` attribute here */}
-        {/*<Route exact path="/animals" render={(props) => {
-          return <AnimalList />
-        }} />
-        */}
         <Route path="/animals/:animalId(\d+)" render={(props) => {
           // Pass the animalId to the AnimalDetailComponent
           return <AnimalDetail animalId={parseInt(props.match.params.animalId)} {...props} />
         }} />
 
-        <Route exact path="/locations" render={(props) => {
-          return <LocationList />
+
+        <Route exact path="/locations" render={props => {
+          if (this.isAuthenticated()) {
+            return <LocationList {...props} />
+          } else {
+            return <Redirect to="/login" />
+          }
         }} />
         <Route path="/locations/:locationId(\d+)" render={(props) => {
           return <LocationDetail locationId={parseInt(props.match.params.locationId)} {...props} />
         }} />
 
+
+        <Route exact path="/employees" render={props => {
+          if (this.isAuthenticated()) {
+            return <EmployeeList {...props} />
+          } else {
+            return <Redirect to="/login" />
+          }
+        }} />
         <Route path="/employees" render={(props) => {
-          return <EmployeeList />
+          return <EmployeeList {...props} />
         }} />
 
+
+        <Route exact path="/owners" render={props => {
+          if (this.isAuthenticated()) {
+            return <OwnerList {...props} />
+          } else {
+            return <Redirect to="/login" />
+          }
+        }} />
         <Route path="/owners" render={(props) => {
           return <OwnerList />
         }} />
+
 
         {/* Our shiny new route. */}
         <Route path="/animals/new" render={(props) => {
