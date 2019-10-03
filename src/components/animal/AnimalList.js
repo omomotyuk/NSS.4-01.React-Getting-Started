@@ -22,15 +22,20 @@ class AnimalList extends Component {
             })
     }
 
-    componentDidMount() {
-        console.log("ANIMAL LIST: ComponentDidMount");
-        //getAll from AnimalManager and hang on to that data; put it in state
+    getData = () => {
         AnimalManager.getAll()
             .then((animals) => {
                 this.setState({
                     animals: animals
                 })
             })
+    }
+
+
+    componentDidMount() {
+        console.log("ANIMAL LIST: ComponentDidMount");
+        //getAll from AnimalManager and hang on to that data; put it in state
+        this.getData()
     }
 
     render() {
@@ -50,8 +55,11 @@ class AnimalList extends Component {
                 <div className="container-cards">
                     {this.state.animals.map(animal => <AnimalCard key={animal.id}
                         animal={animal}
-                        deleteAnimal={this.deleteAnimal}
-                        {...this.props} />)}
+                        //deleteAnimal={this.deleteAnimal}
+                        {...this.props}
+                        getData={this.getData}
+                    />
+                    )}
                 </div>
 
             </React.Fragment>

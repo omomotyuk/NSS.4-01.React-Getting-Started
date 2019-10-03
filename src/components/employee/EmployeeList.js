@@ -39,7 +39,7 @@ class EmployeeList extends Component {
 
         return (
             <div className="container-cards">
-                {this.state.employees.map(employee => <EmployeeCard key={employee.id} employee={employee} deleteEmployee={this.deleteEmployee} />)}
+                {this.state.employees.map(employee => <EmployeeCard key={employee.id} employee={employee} deleteEmployee={this.deleteEmployee} {...this.props} />)}
             </div>
         )
     }
