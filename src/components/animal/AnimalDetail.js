@@ -26,23 +26,23 @@ class AnimalDetail extends Component {
                 this.setState({
                     name: animal.name,
                     breed: animal.breed,
-                    imageUrl: animal.url,
+                    imageUrl: animal.imageUrl,
                     loadingStatus: false
                 });
             });
     }
 
     render() {
-        {/*}
-        if( this.state.loadingStatus ) {
+
+        if (this.state.loadingStatus) {
             return <p>Loading...</p>
         }
-    */}
+
         return (
             <div className="card">
                 <div className="card-content">
                     <picture>
-                        <img src={require('./dog.svg')} alt="My Dog" />
+                        <img src={require(`./images/${this.state.imageUrl}`)} alt="dogs pics" />
                     </picture>
                     <h3>Name: <span style={{ color: 'darkslategrey' }}>{this.state.name}</span></h3>
                     <p>Breed: {this.state.breed}</p>
