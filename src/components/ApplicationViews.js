@@ -42,7 +42,6 @@ class ApplicationViews extends Component {
           }
         }} />
         <Route exact path="/animals/:animalId(\d+)" render={(props) => {
-          // Pass the animalId to the AnimalDetailComponent
           return <AnimalDetail animalId={parseInt(props.match.params.animalId)} {...props} />
         }} />
         <Route path="/animals/:animalId(\d+)/edit" render={props => {
@@ -74,9 +73,6 @@ class ApplicationViews extends Component {
             return <Redirect to="/login" />
           }
         }} />
-        {/*<Route path="/employees" render={(props) => {
-          return <EmployeeList {...props} />
-        }} />*/}
         <Route exact path="/employees/:employeeId(\d+)/details" render={(props) => {
           return <EmployeeWithAnimals {...props} />
         }} />
@@ -101,14 +97,12 @@ class ApplicationViews extends Component {
         }}
         />
 
-
-        {/* Our shiny new route. */}
         <Route path="/animals/new" render={(props) => {
           return <AnimalForm {...props} />
         }} />
 
-        {/*//------------------------------------
-        //pass the `setUser` function to Login component.*/}
+        {/*pass the `setUser` function to Login component.
+        */}
         <Route path="/login" render={props => {
           return <Login setUser={this.props.setUser} {...props} />
         }} />
