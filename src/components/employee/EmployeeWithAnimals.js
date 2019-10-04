@@ -8,6 +8,17 @@ class EmployeeWithAnimals extends Component {
     animals: []
   }
 
+  getData = () => {
+    EmployeeManager.getWithAnimals(this.props.match.params.employeeId).then(
+      APIResult => {
+        this.setState({
+          employee: APIResult,
+          animals: APIResult.animals
+        });
+      }
+    );
+  };
+
   componentDidMount = () => {
     //got here now make call to get employee with animal
     EmployeeManager.getWithAnimals(this.props.match.params.employeeId)
@@ -28,6 +39,7 @@ class EmployeeWithAnimals extends Component {
             key={animal.id}
             animal={animal}
             {...this.props}
+            getData={this.getData}
           />
         )}
       </div>
